@@ -57,44 +57,9 @@
         });
        
         // First, reset Puck.js
-        connection.write("reset();\n", function() {
-          // Wait for it to reset itself
-          setTimeout(function() {
-            // Now tell it to write data on the current light level to Bluetooth
-            // 10 times a second. Also ensure that when disconnected, Puck.js
-            // resets so the setInterval doesn't keep draining battery.
-            connection.write("var c = E.compiledC(`
-// void encA(bool)
-// void encB(bool)
-// int getEnc()
-const int stable[] = {0,-1,1,0,1,0,0,-1,-1,0, 0,1, 0,1, -1, 0};
-volatile bool encoder_raw[] = {false, false};
-volatile int counter = 0;
-volatile int prev_state = -1;
-void encoder_callback(int AB, bool value){
-    encoder_raw[AB]=value;
-    int cur_state = encoder_raw[0] << 1 | encoder_raw[1];
-    if(prev_state < 0) prev_state = cur_state;
-    counter += stable[prev_state << 2 | cur_state];
-    prev_state=cur_state;
-};
-void encA(bool state){ encoder_callback(0,state); }
-void encB(bool state){ encoder_callback(1,state); }
-int getEnc() {
- int r = counter;
- return r;
-}
-`);
-setWatch(c.encA, D25, {repeat:true, edge:"both", irq:true});
-setWatch(c.encB, D26, {repeat:true, edge:"both", irq:true});
-setTimeout(function(){
-// Every .1 seconds, report back the value
-setInterval(function() {
-  Bluetooth.println(c.getEnc());
-  //print(c.getEnc());
-}, 10);
-},2000);NRF.on('disconnect', function() {reset()});\n",
+       connection.write("start();\n",
               function() { console.log("Ready..."); });
+              */
           }, 1500);
         });
         
