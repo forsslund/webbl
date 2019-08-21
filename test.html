@@ -5,5 +5,25 @@
   <script src="https://www.puck-js.com/puck.js"></script>
   <button onclick="Puck.write('LED1.set();\n');">On!</button>
   <button onclick="Puck.write('LED1.reset();\n');">Off!</button>
+
+  <svg id="dial" viewBox="-100 -100 200 200"  width="100" height="100">
+   <line id="line" x1="0" y1="0" x2="90" y2="0" style="stroke:rgb(255,0,0);stroke-width:2" />
+  </svg>
+  <p>Counter: <span id="counter"/></p>
+ 
+  <script>
+   var counter=0;
+   setInterval(function() {
+    Puck.eval("c.getEnc()",function(x) { counter = x; });
+    var r = 90;
+    var theta = counter * (2*3.14159 / 1024);
+    var x = r * cos(theta);
+    var y = r * sin(theta);
+    document.getElementbyId("line").x2 = x;
+    document.getElementbyId("line").xy = y;    
+    document.getElementbyId("counter").innerHTML=counter;    
+   }, 100);
+   
+  </script>
  </body>
 </html>
