@@ -36,6 +36,7 @@
       if (connection) {
         connection.close();
         connection = undefined;
+       return;
       }
       Puck.connect(function(c) {
         if (!c) {
@@ -57,13 +58,12 @@
         });
        
         // First, reset Puck.js
-       connection.write("start();\n",
-              function() { console.log("Ready..."); });}, 1500);
+       connection.write("start();\n");
         
         
         
-      });
-    });
+      }); // Puck.connect
+    }); // button eventlistner
    
    
   </script>
