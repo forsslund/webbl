@@ -19,9 +19,9 @@
     var theta = counter * (2*3.14159 / 1024);
     var x = r * Math.cos(theta);
     var y = r * Math.sin(theta);
-    Document.getElementbyId("line").x2 = x;
-    Document.getElementbyId("line").xy = y;    
-    Document.getElementbyId("counter").innerHTML=counter;    
+    Document.getElementById("line").x2 = x;
+    Document.getElementById("line").xy = y;    
+    Document.getElementById("counter").innerHTML=counter;    
    }, 100);
    
   </script>
