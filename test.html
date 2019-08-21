@@ -17,7 +17,7 @@
   <script>        
    var counter=0;
 
-   
+    var xhttp = new XMLHttpRequest();
     function onLine(v) {
       //console.log("Received: "+JSON.stringify(v));
       counter = v;
@@ -39,7 +39,7 @@ xhttp.onreadystatechange = function() {
        document.getElementById("demo").innerHTML = xhttp.responseText;
     }
 };*/
-        var xhttp = new XMLHttpRequest();
+
         xhttp.open("GET", "http://192.168.1.187:8088/setencoder/5/"+counter.toString(), true);
         xhttp.send();     
     }
