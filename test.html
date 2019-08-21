@@ -17,8 +17,8 @@
     Puck.eval("c.getEnc()",function(x) { counter = x; });
     var r = 90;
     var theta = counter * (2*3.14159 / 1024);
-    var x = r * cos(theta);
-    var y = r * sin(theta);
+    var x = r * Math.cos(theta);
+    var y = r * Math.sin(theta);
     document.getElementbyId("line").x2 = x;
     document.getElementbyId("line").xy = y;    
     document.getElementbyId("counter").innerHTML=counter;    
